@@ -310,6 +310,10 @@ func expandStatement(m map[string]interface{}) *wafv2.Statement {
 		statement.OrStatement = expandOrStatement(v.([]interface{}))
 	}
 
+	if v, ok := m["rate_based_statement"]; ok {
+		statement.RateBasedStatement = expandRateBasedStatement(v.([]interface{}))
+	}
+
 	if v, ok := m["regex_pattern_set_reference_statement"]; ok {
 		statement.RegexPatternSetReferenceStatement = expandRegexPatternSetReferenceStatement(v.([]interface{}))
 	}
@@ -824,6 +828,10 @@ func flattenStatement(s *wafv2.Statement) map[string]interface{} {
 
 	if s.OrStatement != nil {
 		m["or_statement"] = flattenOrStatement(s.OrStatement)
+	}
+
+	if s.RateBasedStatement != nil {
+		m["rate_based_statement"] = flattenRateBasedStatement(s.RateBasedStatement)
 	}
 
 	if s.RegexPatternSetReferenceStatement != nil {

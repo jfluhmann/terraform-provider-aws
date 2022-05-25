@@ -66,6 +66,7 @@ func rootStatementSchema(level int) *schema.Schema {
 				"label_match_statement":                 labelMatchStatementSchema(),
 				"not_statement":                         statementSchema(level - 1),
 				"or_statement":                          statementSchema(level - 1),
+				"rate_based_statement":                  wafv2RateBasedStatementSchema(level),
 				"regex_pattern_set_reference_statement": regexPatternSetReferenceStatementSchema(),
 				"size_constraint_statement":             sizeConstraintSchema(),
 				"sqli_match_statement":                  sqliMatchStatementSchema(),
